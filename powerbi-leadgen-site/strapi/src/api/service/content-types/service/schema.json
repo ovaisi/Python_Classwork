@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Power BI service offerings by industry"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "default": "📊"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "priceFrom": {
+      "type": "string",
+      "required": true
+    },
+    "features": {
+      "type": "json",
+      "required": true
+    },
+    "dataSources": {
+      "type": "json"
+    },
+    "idealFor": {
+      "type": "string"
+    },
+    "metaTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "sortOrder": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

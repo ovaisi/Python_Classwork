@@ -1,31 +1,68 @@
-const testimonials = [
+import { getTestimonials, type Testimonial } from '@/lib/strapi';
+
+// Fallback testimonials if Strapi is unreachable
+const FALLBACK: Omit<Testimonial, 'id'>[] = [
   {
-    quote:
-      "We went from spending 15 hours a week on Excel reports to having everything live in Power BI. Our VP of Sales now has real-time pipeline visibility. Game changer.",
-    author: 'Sarah Mitchell',
-    title: 'Head of Revenue Operations',
-    company: 'TechScale Inc. — Austin, TX',
-    rating: 5,
+    attributes: {
+      quote: "We went from spending 15 hours a week on Excel reports to having everything live in Power BI. Our VP of Sales now has real-time pipeline visibility. Game changer.",
+      author: 'Sarah Mitchell',
+      title:  'Head of Revenue Operations',
+      company: 'TechScale Inc.',
+      location: 'Austin, TX — USA',
+      rating: 5,
+      industry: 'SaaS',
+      isFeatured: true,
+      sortOrder: 1,
+      avatar: { data: null },
+      publishedAt: '',
+    },
   },
   {
-    quote:
-      "The finance dashboard they built connects to our QuickBooks and Salesforce. Our CFO reviews it every Monday morning instead of asking for manual reports. ROI was immediate.",
-    author: 'James Okonkwo',
-    title: 'CFO',
-    company: 'Meridian Group — London, UK',
-    rating: 5,
+    attributes: {
+      quote: "The finance dashboard they built connects to our QuickBooks and Salesforce. Our CFO reviews it every Monday morning instead of asking for manual reports. ROI was immediate.",
+      author: 'James Okonkwo',
+      title:  'CFO',
+      company: 'Meridian Group',
+      location: 'London, UK — EU',
+      rating: 5,
+      industry: 'Professional Services',
+      isFeatured: true,
+      sortOrder: 2,
+      avatar: { data: null },
+      publishedAt: '',
+    },
   },
   {
-    quote:
-      "Our ecommerce team was drowning in data from 3 platforms. Now it's all unified in one dashboard. We identified a €40K/month revenue leak in the first week.",
-    author: 'Lena Brauer',
-    title: 'E-Commerce Director',
-    company: 'NordStyle GmbH — Berlin, DE',
-    rating: 5,
+    attributes: {
+      quote: "Our ecommerce team was drowning in data from 3 platforms. Now it's all unified in one dashboard. We identified a €40K/month revenue leak in the first week.",
+      author: 'Lena Brauer',
+      title:  'E-Commerce Director',
+      company: 'NordStyle GmbH',
+      location: 'Berlin, DE — EU',
+      rating: 5,
+      industry: 'Ecommerce',
+      isFeatured: true,
+      sortOrder: 3,
+      avatar: { data: null },
+      publishedAt: '',
+    },
   },
 ];
 
-export default function TestimonialsSection() {
+export default async function TestimonialsSection() {
+  let testimonials: Testimonial[] = [];
+
+  try {
+    testimonials = await getTestimonials(true); // featured only
+  } catch {
+    // Strapi unreachable — use fallback
+  }
+
+  // Use Strapi data if available, otherwise fall back to hardcoded
+  const items = testimonials.length > 0
+    ? testimonials.map((t) => t.attributes)
+    : FALLBACK.map((t) => t.attributes);
+
   return (
     <section className="section-padding bg-white">
       <div className="container-xl">
@@ -40,7 +77,7 @@ export default function TestimonialsSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
+          {items.map((t) => (
             <div key={t.author} className="card border-l-4 border-l-primary-500 flex flex-col">
               <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: t.rating }).map((_, i) => (
@@ -57,13 +94,13 @@ export default function TestimonialsSection() {
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">{t.author}</p>
                   <p className="text-xs text-gray-500">{t.title} · {t.company}</p>
+                  {t.location && <p className="text-xs text-gray-400">{t.location}</p>}
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Guarantee */}
         <div className="mt-12 bg-green-50 border border-green-200 rounded-2xl p-6 md:p-8 text-center max-w-3xl mx-auto">
           <div className="text-4xl mb-3">🛡️</div>
           <h3 className="text-xl font-bold text-gray-900 mb-2">100% Satisfaction Guarantee</h3>

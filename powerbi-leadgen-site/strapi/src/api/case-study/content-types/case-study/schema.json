@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "case_studies",
+  "info": {
+    "singularName": "case-study",
+    "pluralName": "case-studies",
+    "displayName": "Case Study",
+    "description": "Client case studies with metrics and results"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "industry": {
+      "type": "enumeration",
+      "enum": [
+        "SaaS",
+        "Ecommerce",
+        "Finance",
+        "Healthcare",
+        "Manufacturing",
+        "Professional Services",
+        "Marketing",
+        "Real Estate",
+        "Logistics"
+      ],
+      "required": true
+    },
+    "challenge": {
+      "type": "text",
+      "required": true
+    },
+    "solution": {
+      "type": "text",
+      "required": true
+    },
+    "fullStory": {
+      "type": "richtext"
+    },
+    "results": {
+      "type": "json",
+      "required": true
+    },
+    "testimonialQuote": {
+      "type": "text"
+    },
+    "testimonialAuthor": {
+      "type": "string"
+    },
+    "testimonialTitle": {
+      "type": "string"
+    },
+    "metaTitle": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "metaDescription": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
