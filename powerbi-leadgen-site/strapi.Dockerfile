@@ -25,7 +25,8 @@ COPY strapi/ .
 # NODE_ENV is intentionally NOT set to production here so Strapi's internal
 # `npm install` (for react/styled-components) doesn't prune esbuild and other
 # build-time deps. We set it in the runner stage instead.
-RUN npm run build
+# Ensure output dirs exist even if Strapi skips them for a plain project.
+RUN npm run build && mkdir -p build dist
 
 # ── Stage 2: Production runner ────────────────────────────────────────────────
 FROM node:20-alpine AS runner
@@ -43,6 +44,7 @@ WORKDIR /app
 
 COPY --from=builder --chown=strapi:strapi /app/node_modules  ./node_modules
 COPY --from=builder --chown=strapi:strapi /app/build         ./build
+COPY --from=builder --chown=strapi:strapi /app/dist          ./dist
 COPY --from=builder --chown=strapi:strapi /app/config        ./config
 COPY --from=builder --chown=strapi:strapi /app/database      ./database
 COPY --from=builder --chown=strapi:strapi /app/src           ./src
