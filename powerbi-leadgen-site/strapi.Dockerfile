@@ -15,8 +15,8 @@ RUN apk add --no-cache \
 WORKDIR /app
 
 # Install dependencies
-COPY strapi/package.json strapi/package-lock.json* ./
-RUN npm ci --frozen-lockfile
+COPY strapi/package.json ./
+RUN npm install
 
 # Copy Strapi source
 COPY strapi/ .
