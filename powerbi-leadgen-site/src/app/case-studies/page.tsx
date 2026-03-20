@@ -17,7 +17,7 @@ const caseStudies = [
     location: 'Austin, TX — USA',
     title: 'How TechScale Went From Weekly Excel Hell to Real-Time Sales Intelligence',
     challenge:
-      'TechScale's sales team was producing a 40-tab Excel report manually every Monday. It took 15 hours, was always outdated, and no one trusted the numbers.',
+      "TechScale's sales team was producing a 40-tab Excel report manually every Monday. It took 15 hours, was always outdated, and no one trusted the numbers.",
     solution:
       'We connected Salesforce, HubSpot, and their billing platform (Stripe) into a unified Power BI sales dashboard with daily auto-refresh.',
     results: [
@@ -26,7 +26,7 @@ const caseStudies = [
       { metric: '$240K', label: 'Pipeline leakage identified in month 1' },
       { metric: '3 weeks', label: 'Delivery time from kickoff to live' },
     ],
-    quote: 'Our CRO now starts every Monday with the dashboard open on the big screen. We finally know what's happening in our pipeline in real time.',
+    quote: "Our CRO now starts every Monday with the dashboard open on the big screen. We finally know what's happening in our pipeline in real time.",
     author: 'Sarah Mitchell, Head of RevOps',
     image: '📈',
   },
@@ -35,7 +35,7 @@ const caseStudies = [
     industry: 'Professional Services',
     company: 'Meridian Group',
     location: 'London, UK — EU',
-    title: 'How Meridian's CFO Eliminated Manual Reporting Across 3 Entities',
+    title: "How Meridian's CFO Eliminated Manual Reporting Across 3 Entities",
     challenge:
       'Meridian operated three business entities across the UK and Germany. Consolidating financials each month took 3 days and was error-prone.',
     solution:
@@ -66,7 +66,7 @@ const caseStudies = [
       { metric: '1 dashboard', label: 'Replacing 3 separate platform reports' },
       { metric: '2 weeks', label: 'Time to first live dashboard' },
     ],
-    quote: 'We had a product category returning at 45% that we didn't know about. Fixing it was worth more than the dashboard cost in month one.',
+    quote: "We had a product category returning at 45% that we didn't know about. Fixing it was worth more than the dashboard cost in month one.",
     author: 'Lena Brauer, E-Commerce Director',
     image: '🛒',
   },

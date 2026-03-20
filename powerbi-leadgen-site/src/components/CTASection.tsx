@@ -8,7 +8,7 @@ interface CTASectionProps {
 
 export default function CTASection({
   heading = 'Ready to See Your Data Come Alive?',
-  subheading = 'Book a free 45-minute strategy call. We'll review your current reporting setup and show you exactly what a Power BI dashboard could do for your business — for free.',
+  subheading = "Book a free 45-minute strategy call. We'll review your current reporting setup and show you exactly what a Power BI dashboard could do for your business — for free.",
   variant = 'dark',
 }: CTASectionProps) {
   const isDark = variant === 'dark';

@@ -162,7 +162,7 @@ export default function CityPage({ params }: PageProps) {
                 { icon: '⚡', title: 'Fast, predictable delivery', desc: `Most ${city.name} clients have a live dashboard within 2–4 weeks of starting.` },
                 { icon: '🔗', title: 'Connect any data source', desc: 'Salesforce, QuickBooks, Shopify, SQL, Google Analytics — we connect them all.' },
                 { icon: '🎓', title: 'Full training and handover', desc: 'Your team will own and maintain the dashboard after we deliver it.' },
-                { icon: '🛡️', title: '100% satisfaction guarantee', desc: 'If you're not happy after the first revision round, we'll refund your deposit.' },
+                { icon: '🛡️', title: '100% satisfaction guarantee', desc: "If you're not happy after the first revision round, we'll refund your deposit." },
               ].map((b) => (
                 <div key={b.title} className="card flex items-start gap-4">
                   <div className="text-3xl">{b.icon}</div>

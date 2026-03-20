@@ -3,18 +3,18 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Contact Us — Book a Free Power BI Dashboard Consultation',
   description:
-    'Book a free 45-minute Power BI strategy call. We'll review your data setup and show you exactly what a custom dashboard could do for your business.',
+    "Book a free 45-minute Power BI strategy call. We'll review your data setup and show you exactly what a custom dashboard could do for your business.",
   alternates: { canonical: 'https://www.datazeb.com/contact' },
 };
 
 const faqs = [
   {
     q: 'How long does it take to build a Power BI dashboard?',
-    a: 'Most projects take 2–4 weeks from kickoff to go-live. Complex multi-source projects may take 4–6 weeks. We'll give you a precise timeline during your discovery call.',
+    a: "Most projects take 2–4 weeks from kickoff to go-live. Complex multi-source projects may take 4–6 weeks. We'll give you a precise timeline during your discovery call.",
   },
   {
     q: 'Do I need a Power BI license?',
-    a: 'To share dashboards with your team, you need Power BI Pro ($10/user/month) or Power BI Premium. We'll guide you through the most cost-effective licensing option during onboarding.',
+    a: "To share dashboards with your team, you need Power BI Pro ($10/user/month) or Power BI Premium. We'll guide you through the most cost-effective licensing option during onboarding.",
   },
   {
     q: 'What data sources can you connect?',
@@ -165,7 +165,7 @@ export default function ContactPage() {
                     { icon: '🎯', text: 'We review your current data setup and reporting process' },
                     { icon: '📊', text: 'We identify 2–3 quick wins you could get from a Power BI dashboard' },
                     { icon: '💡', text: 'We walk you through a live example relevant to your industry' },
-                    { icon: '📋', text: 'We share a project scope and rough cost estimate (if you're interested)' },
+                    { icon: '📋', text: "We share a project scope and rough cost estimate (if you're interested)" },
                   ].map((item) => (
                     <li key={item.text} className="flex items-start gap-3 text-sm text-gray-700">
                       <span className="text-xl">{item.icon}</span>
