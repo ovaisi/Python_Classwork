@@ -4,16 +4,19 @@ name: datazeb
 # DataZeb — Docker Compose
 #
 # Services:
-#   postgres  — PostgreSQL 15 database
-#   strapi    — Strapi v5 CMS (cms.datazeb.com)
-#   nextjs    — Next.js 14 frontend (datazeb.com)
-#   n8n       — Workflow automation (datazeb.com/automation)
-#   nginx     — Reverse proxy + SSL termination
-#   certbot   — Let's Encrypt SSL cert + auto-renewal
+#   postgres  — PostgreSQL 15 database (internal only)
+#   strapi    — Strapi v5 CMS  → proxied via system nginx → cms.datazeb.com
+#   nextjs    — Next.js 14     → proxied via system nginx → datazeb.com
+#
+# NOT here (managed separately on the VPS):
+#   nginx   → system nginx  (see infra/nginx.conf)
+#   certbot → system certbot
+#   n8n     → /docker/n8n-rniy/  (separate project, DO NOT TOUCH)
 #
 # Usage:
 #   First time:  docker compose up -d --build
-#   Redeploy:    docker compose up -d --build nextjs   (or strapi, n8n)
+#   Redeploy:    docker compose up -d --build nextjs
+#                docker compose up -d --build strapi
 #   Logs:        docker compose logs -f
 #   Stop:        docker compose down
 # ─────────────────────────────────────────────────────────────────────────────
@@ -31,7 +34,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./docker/postgres/init.sh:/docker-entrypoint-initdb.d/init.sh:ro
     networks:
       - datazeb_net
     healthcheck:
@@ -39,7 +41,6 @@ services:
       interval: 10s
       timeout:  5s
       retries:  5
-    # Do NOT expose port 5432 to the host — internal only
     expose:
       - "5432"
 
@@ -54,41 +55,39 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      NODE_ENV:          production
-      HOST:              0.0.0.0
-      PORT:              1337
+      NODE_ENV:            production
+      HOST:                0.0.0.0
+      PORT:                1337
 
-      # Database — connects to postgres service by name
-      DATABASE_CLIENT:   postgres
-      DATABASE_HOST:     postgres          # Docker service name = hostname
-      DATABASE_PORT:     5432
-      DATABASE_NAME:     ${POSTGRES_DB:-datazeb_cms}
-      DATABASE_USERNAME: ${POSTGRES_USER:-strapi}
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_SSL:      "false"
+      DATABASE_CLIENT:     postgres
+      DATABASE_HOST:       postgres
+      DATABASE_PORT:       5432
+      DATABASE_NAME:       ${POSTGRES_DB:-datazeb_cms}
+      DATABASE_USERNAME:   ${POSTGRES_USER:-strapi}
+      DATABASE_PASSWORD:   ${POSTGRES_PASSWORD}
+      DATABASE_SSL:        "false"
 
-      # Strapi secrets — set in .env
       APP_KEYS:            ${STRAPI_APP_KEYS}
       API_TOKEN_SALT:      ${STRAPI_API_TOKEN_SALT}
       ADMIN_JWT_SECRET:    ${STRAPI_ADMIN_JWT_SECRET}
       TRANSFER_TOKEN_SALT: ${STRAPI_TRANSFER_TOKEN_SALT}
       JWT_SECRET:          ${STRAPI_JWT_SECRET}
 
-      # Next.js revalidation webhook
-      NEXTJS_URL:        http://nextjs:3000    # Docker service name
-      REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+      NEXTJS_URL:          http://nextjs:3000
+      REVALIDATE_SECRET:   ${REVALIDATE_SECRET}
     volumes:
-      - strapi_uploads:/app/public/uploads    # Persist media files
+      - strapi_uploads:/app/public/uploads
+    # Bind to 127.0.0.1 — system nginx proxies cms.datazeb.com → :1337
+    ports:
+      - "127.0.0.1:1337:1337"
     networks:
       - datazeb_net
-    expose:
-      - "1337"
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://localhost:1337/_health || exit 1"]
       interval: 30s
       timeout:  10s
       retries:  5
-      start_period: 60s  # Strapi takes time to boot
+      start_period: 60s
 
   # ── Next.js Frontend ─────────────────────────────────────────────────────────
   nextjs:
@@ -108,118 +107,25 @@ services:
     environment:
       NODE_ENV:          production
       PORT:              3000
-
-      # Strapi API — connect via Docker service name
       STRAPI_URL:        http://strapi:1337
       STRAPI_TOKEN:      ${STRAPI_TOKEN}
       REVALIDATE_SECRET: ${REVALIDATE_SECRET}
+    # Bind to 127.0.0.1 — system nginx proxies datazeb.com → :3000
+    ports:
+      - "127.0.0.1:3000:3000"
     networks:
       - datazeb_net
-    expose:
-      - "3000"
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/health || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/ || exit 1"]
       interval: 20s
       timeout:  5s
       retries:  5
       start_period: 30s
 
-  # ── n8n Workflow Automation ───────────────────────────────────────────────────
-  n8n:
-    image: n8nio/n8n:latest
-    container_name: datazeb_n8n
-    restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      # Database — separate n8n_db inside the same postgres instance
-      DB_TYPE:                   postgresdb
-      DB_POSTGRESDB_HOST:        postgres
-      DB_POSTGRESDB_PORT:        5432
-      DB_POSTGRESDB_DATABASE:    ${N8N_DB:-n8n_db}
-      DB_POSTGRESDB_USER:        ${N8N_DB_USER:-n8n}
-      DB_POSTGRESDB_PASSWORD:    ${N8N_DB_PASSWORD}
-
-      # Serve n8n at datazeb.com/automation/
-      N8N_HOST:                  datazeb.com
-      N8N_PORT:                  5678
-      N8N_PROTOCOL:              https
-      N8N_PATH:                  /automation/
-      WEBHOOK_URL:               https://datazeb.com/automation/
-      N8N_EDITOR_BASE_URL:       https://datazeb.com/automation/
-
-      # Basic auth to protect the editor
-      N8N_BASIC_AUTH_ACTIVE:     "true"
-      N8N_BASIC_AUTH_USER:       ${N8N_BASIC_AUTH_USER:-admin}
-      N8N_BASIC_AUTH_PASSWORD:   ${N8N_BASIC_AUTH_PASSWORD}
-
-      # Security
-      N8N_ENCRYPTION_KEY:        ${N8N_ENCRYPTION_KEY}
-      GENERIC_TIMEZONE:          ${TIMEZONE:-Europe/London}
-    volumes:
-      - n8n_data:/home/node/.n8n
-    networks:
-      - datazeb_net
-    expose:
-      - "5678"
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:5678/automation/healthz || exit 1"]
-      interval: 30s
-      timeout:  10s
-      retries:  5
-      start_period: 30s
-
-  # ── Nginx Reverse Proxy ──────────────────────────────────────────────────────
-  nginx:
-    image: nginx:1.25-alpine
-    container_name: datazeb_nginx
-    restart: unless-stopped
-    depends_on:
-      - nextjs
-      - strapi
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
-      - certbot_certs:/etc/letsencrypt:ro
-      - certbot_webroot:/var/www/certbot:ro
-      - nginx_logs:/var/log/nginx
-    networks:
-      - datazeb_net
-    healthcheck:
-      test: ["CMD", "nginx", "-t"]
-      interval: 30s
-      timeout:  5s
-      retries:  3
-
-  # ── Certbot (Let's Encrypt SSL) ──────────────────────────────────────────────
-  certbot:
-    image: certbot/certbot:latest
-    container_name: datazeb_certbot
-    volumes:
-      - certbot_certs:/etc/letsencrypt
-      - certbot_webroot:/var/www/certbot
-    # Runs once then exits — renewal handled by a cron job or docker run
-    entrypoint: >
-      sh -c "trap exit TERM;
-             while :; do
-               certbot renew --webroot -w /var/www/certbot --quiet;
-               sleep 12h & wait $${!};
-             done"
-    networks:
-      - datazeb_net
-
 # ── Named Volumes ─────────────────────────────────────────────────────────────
 volumes:
-  postgres_data:    # PostgreSQL data — survives container restarts
+  postgres_data:    # PostgreSQL data
   strapi_uploads:   # Strapi media uploads
-  n8n_data:         # n8n workflows, credentials, and execution history
-  certbot_certs:    # SSL certificates from Let's Encrypt
-  certbot_webroot:  # ACME challenge files
-  nginx_logs:       # Nginx access/error logs
 
 # ── Networks ──────────────────────────────────────────────────────────────────
 networks:
