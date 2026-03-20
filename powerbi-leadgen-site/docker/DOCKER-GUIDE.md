@@ -234,11 +234,12 @@ Next.js updates automatically:
 | postgres | ~150MB | ~0% |
 | strapi | ~450MB | ~1% |
 | nextjs | ~180MB | ~1% |
+| n8n | ~250MB | ~1% |
 | nginx | ~30MB | ~0% |
 | certbot | ~20MB | ~0% |
-| **Total** | **~830MB** | **~2%** |
+| **Total** | **~1.1GB** | **~2%** |
 
-**7.2GB free** for traffic spikes and future services.
+**6.9GB free** for traffic spikes and future services.
 
 ---
 

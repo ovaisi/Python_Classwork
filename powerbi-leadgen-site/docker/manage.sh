@@ -116,8 +116,9 @@ up)
     $COMPOSE ps
     log "✅ All services running"
     echo ""
-    echo "  Frontend: https://datazeb.com"
-    echo "  CMS:      https://cms.datazeb.com/admin"
+    echo "  Frontend:   https://datazeb.com"
+    echo "  CMS:        https://cms.datazeb.com/admin"
+    echo "  Automation: https://datazeb.com/automation/"
     ;;
 
 # ── Stop all containers ────────────────────────────────────────────────────────
@@ -164,6 +165,7 @@ status)
         datazeb_postgres \
         datazeb_strapi \
         datazeb_nextjs \
+        datazeb_n8n \
         datazeb_nginx 2>/dev/null || true
     ;;
 
