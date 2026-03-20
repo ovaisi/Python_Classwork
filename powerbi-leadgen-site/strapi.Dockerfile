@@ -22,7 +22,9 @@ RUN npm install
 COPY strapi/ .
 
 # Build Strapi admin panel
-ENV NODE_ENV=production
+# NODE_ENV is intentionally NOT set to production here so Strapi's internal
+# `npm install` (for react/styled-components) doesn't prune esbuild and other
+# build-time deps. We set it in the runner stage instead.
 RUN npm run build
 
 # ── Stage 2: Production runner ────────────────────────────────────────────────
