@@ -42,12 +42,11 @@ RUN addgroup --system --gid 1001 strapi \
 WORKDIR /app
 
 COPY --from=builder --chown=strapi:strapi /app/node_modules  ./node_modules
-COPY --from=builder --chown=strapi:strapi /app/dist          ./dist
 COPY --from=builder --chown=strapi:strapi /app/build         ./build
 COPY --from=builder --chown=strapi:strapi /app/config        ./config
 COPY --from=builder --chown=strapi:strapi /app/src           ./src
 COPY --from=builder --chown=strapi:strapi /app/package.json  ./package.json
-COPY --from=builder --chown=strapi:strapi /app/tsconfig.json ./tsconfig.json 2>/dev/null || true
+COPY --from=builder --chown=strapi:strapi /app/tsconfig.json ./tsconfig.json
 
 # Uploads directory — mounted as volume in docker-compose
 RUN mkdir -p /app/public/uploads \
