@@ -1,0 +1,43 @@
+# Next.js build output
+.next/
+out/
+
+# Strapi build (in subdirectory)
+strapi/dist/
+strapi/build/
+strapi/.tmp/
+strapi/.cache/
+
+# Dependencies — reinstalled inside Docker
+node_modules/
+strapi/node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Environment files — never bake into image
+.env
+.env.local
+.env.*.local
+strapi/.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Docker files themselves
+docker/
+*.Dockerfile
+docker-compose*.yml
+
+# Docs and scripts not needed in image
+docs/
+infra/
+content/
+scripts/

@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Required for Docker multi-stage build — produces a minimal standalone server
+  output: 'standalone',
+
   images: {
-    domains: ['images.unsplash.com'],
+    domains: [
+      'images.unsplash.com',
+      'localhost',
+      // Strapi container serves media on this domain in production
+      'cms.datazeb.com',
+    ],
   },
   async headers() {
     return [
