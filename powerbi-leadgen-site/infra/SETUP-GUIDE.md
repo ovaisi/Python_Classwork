@@ -72,7 +72,7 @@ Fill in:
 STRAPI_URL=http://localhost:1337
 STRAPI_TOKEN=<generate after Strapi is running — see Step 5>
 REVALIDATE_SECRET=<same secret as Strapi .env>
-NEXT_PUBLIC_SITE_URL=https://powerbipro.agency
+NEXT_PUBLIC_SITE_URL=https://datazeb.com
 NEXT_PUBLIC_CALENDLY_URL=https://calendly.com/your-link
 NEXT_PUBLIC_CONTACT_EMAIL=hello@yourdomain.com
 ```
@@ -118,7 +118,7 @@ pm2 startup  # Copy and run the printed command
 # Copy Nginx config
 cp /var/www/powerbi/infra/nginx.conf /etc/nginx/sites-available/powerbi
 
-# Edit: replace "powerbipro.agency" with your actual domain
+# Edit: replace "datazeb.com" with your actual domain
 nano /etc/nginx/sites-available/powerbi
 
 # Enable site
@@ -138,9 +138,9 @@ systemctl reload nginx
 ```bash
 # Your domain DNS must point to this VPS IP before running this
 certbot --nginx \
-    -d powerbipro.agency \
-    -d www.powerbipro.agency \
-    -d cms.powerbipro.agency \
+    -d datazeb.com \
+    -d www.datazeb.com \
+    -d cms.datazeb.com \
     --email hello@yourdomain.com \
     --agree-tos \
     --non-interactive
@@ -153,7 +153,7 @@ certbot renew --dry-run
 
 ## Step 8 — Generate Strapi API Token
 
-1. Open `https://cms.powerbipro.agency/admin`
+1. Open `https://cms.datazeb.com/admin`
 2. Create your admin account
 3. Go to **Settings → API Tokens → Create new API Token**
 4. Name: `nextjs-read`
@@ -174,7 +174,7 @@ pm2 restart nextjs
 
 ## Step 9 — Add Content in Strapi Admin
 
-1. Go to `https://cms.powerbipro.agency/admin`
+1. Go to `https://cms.datazeb.com/admin`
 2. **Content Manager → Blog Post → Create new entry**
 3. Fill in: Title, Slug, Excerpt, Body (rich text), Category, Meta fields
 4. Click **Publish**

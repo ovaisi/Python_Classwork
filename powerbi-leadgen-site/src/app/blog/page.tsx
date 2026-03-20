@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Power BI Blog — Tips, Tutorials & Dashboard Ideas',
   description:
     'Practical Power BI tutorials, dashboard ideas, and data strategy guides for sales, finance, and ecommerce teams in the USA and EU.',
-  alternates: { canonical: 'https://www.powerbipro.agency/blog' },
+  alternates: { canonical: 'https://www.datazeb.com/blog' },
 };
 
 const CATEGORY_ICON: Record<string, string> = {

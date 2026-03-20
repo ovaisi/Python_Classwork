@@ -93,10 +93,10 @@ lead capture active, outreach machine running, and first 2–3 demo calls booked
 
 ### Day 6 — Cold Email Setup
 **All day (4 hours):**
-- [ ] Register a secondary domain for cold email (e.g., powerbipro.co — $12/year)
+- [ ] Register a secondary domain for cold email (e.g., datazeb.com — $12/year)
 - [ ] Set up Google Workspace on secondary domain ($6/month)
 - [ ] Configure SPF, DKIM, DMARC records (Google will guide you)
-- [ ] Create email account: yourname@powerbipro.co
+- [ ] Create email account: yourname@datazeb.com
 - [ ] Start warm-up period on the new mailbox (7–10 days before sending cold)
   - Send 5–10 emails per day to real contacts in your network
   - Have them reply — this builds sender reputation

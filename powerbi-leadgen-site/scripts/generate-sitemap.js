@@ -10,7 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://www.powerbipro.agency';
+const BASE_URL = 'https://www.datazeb.com';
 
 const staticPages = [
   { url: '/', priority: '1.0', changefreq: 'weekly' },

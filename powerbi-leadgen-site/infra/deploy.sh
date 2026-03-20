@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────────
-# Deploy Script — PowerBI Pro Agency
+# Deploy Script — DataZeb
 #
 # Usage (from your local machine):
 #   ./infra/deploy.sh

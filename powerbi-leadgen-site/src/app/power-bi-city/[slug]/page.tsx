@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `Power BI Consultant ${locationStr} — Custom Dashboard Services`,
     description: `Looking for a Power BI consultant in ${city.name}? We build custom Power BI dashboards for ${city.industries.slice(0, 3).join(', ')} businesses in ${city.name}. Book a free demo.`,
-    alternates: { canonical: `https://www.powerbipro.agency/power-bi-city/${params.slug}` },
+    alternates: { canonical: `https://www.datazeb.com/power-bi-city/${params.slug}` },
   };
 }
 
@@ -65,9 +65,9 @@ export default function CityPage({ params }: PageProps) {
   const schemaOrg = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `PowerBI Pro Agency — ${city.name}`,
+    name: `DataZeb — ${city.name}`,
     description: `Power BI consultant ${city.name} — custom dashboard services for ${city.industries.join(', ')} businesses`,
-    url: `https://www.powerbipro.agency/power-bi-city/${params.slug}`,
+    url: `https://www.datazeb.com/power-bi-city/${params.slug}`,
     areaServed: { '@type': 'City', name: city.name, containedInPlace: { '@type': 'Country', name: city.country } },
     serviceType: 'Power BI Dashboard Development',
   };

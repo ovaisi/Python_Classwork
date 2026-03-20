@@ -221,7 +221,7 @@ Thanks for your time either way. Wishing {Company} a strong year.
 ## Email Best Practices
 
 ### Sending Setup
-- Use a warmed domain (not your main domain — use powerbiproagency.io or similar)
+- Use a warmed domain (not your main domain — use datazeb.io or similar)
 - Send limit: 30–50 cold emails/day to avoid spam flags
 - Use personalization tokens properly — broken tokens kill conversion
 - Send from a real name, not "Team PowerBI Pro"

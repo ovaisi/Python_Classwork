@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Contact Us — Book a Free Power BI Dashboard Consultation',
   description:
     'Book a free 45-minute Power BI strategy call. We'll review your data setup and show you exactly what a custom dashboard could do for your business.',
-  alternates: { canonical: 'https://www.powerbipro.agency/contact' },
+  alternates: { canonical: 'https://www.datazeb.com/contact' },
 };
 
 const faqs = [
@@ -181,8 +181,8 @@ export default function ContactPage() {
                 <p className="text-gray-600 text-sm mb-2">
                   Send us a message and we'll get back within 1 business day.
                 </p>
-                <a href="mailto:hello@powerbiproagency.com" className="text-primary-600 font-semibold hover:underline">
-                  hello@powerbiproagency.com
+                <a href="mailto:hello@datazeb.com" className="text-primary-600 font-semibold hover:underline">
+                  hello@datazeb.com
                 </a>
                 <div className="mt-4 flex items-center gap-2 text-sm text-gray-500">
                   <span>🌍</span>

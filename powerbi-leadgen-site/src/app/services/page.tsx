@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Power BI Dashboard Services — Sales, Finance, Ecommerce & More',
   description:
     'Explore our Power BI dashboard services for sales teams, CFOs, ecommerce brands, and SaaS companies. Custom dashboards delivered in 2–4 weeks.',
-  alternates: { canonical: 'https://www.powerbipro.agency/services' },
+  alternates: { canonical: 'https://www.datazeb.com/services' },
 };
 
 const services = [

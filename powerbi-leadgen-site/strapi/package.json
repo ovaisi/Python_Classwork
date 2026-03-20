@@ -2,7 +2,7 @@
   "name": "powerbi-leadgen-strapi",
   "private": true,
   "version": "0.1.0",
-  "description": "Strapi v5 CMS for PowerBI Pro Agency",
+  "description": "Strapi v5 CMS for DataZeb",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -24,6 +24,6 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "powerbi-pro-agency-cms"
+    "uuid": "datazeb-cms"
   }
 }

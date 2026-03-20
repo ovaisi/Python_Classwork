@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Power BI Case Studies — Real Results for Real Businesses',
   description:
     'See how we helped businesses in the USA and EU save 10+ hours/week and uncover hidden revenue with custom Power BI dashboards.',
-  alternates: { canonical: 'https://www.powerbipro.agency/case-studies' },
+  alternates: { canonical: 'https://www.datazeb.com/case-studies' },
 };
 
 const caseStudies = [

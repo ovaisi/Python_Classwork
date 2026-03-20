@@ -5,10 +5,10 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import StatsSection from '@/components/StatsSection';
 
 export const metadata: Metadata = {
-  title: 'Power BI Dashboard Services for USA & EU Businesses | PowerBI Pro Agency',
+  title: 'Power BI Dashboard Services for USA & EU Businesses | DataZeb',
   description:
     'We build custom Power BI dashboards that save 10+ hours/week and increase revenue visibility. Trusted by 40+ businesses across the USA and EU. Book your free demo today.',
-  alternates: { canonical: 'https://www.powerbipro.agency' },
+  alternates: { canonical: 'https://www.datazeb.com' },
 };
 
 const industries = [
@@ -64,8 +64,8 @@ export default function HomePage() {
   const schemaOrg = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'PowerBI Pro Agency',
-    url: 'https://www.powerbipro.agency',
+    name: 'DataZeb',
+    url: 'https://www.datazeb.com',
     description: 'Custom Power BI dashboard development for USA and EU businesses',
     serviceType: 'Business Intelligence Consulting',
     areaServed: ['United States', 'European Union'],

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────────
-# VPS Setup Script — PowerBI Pro Agency
+# VPS Setup Script — DataZeb
 # Tested on: Ubuntu 22.04 LTS
 #
 # Run as root on a fresh VPS:
@@ -20,8 +20,8 @@
 
 set -e  # Exit on any error
 
-DOMAIN="powerbipro.agency"       # ← CHANGE THIS
-EMAIL="hello@powerbipro.agency"  # ← CHANGE THIS (for SSL cert)
+DOMAIN="datazeb.com"       # ← CHANGE THIS
+EMAIL="hello@datazeb.com"  # ← CHANGE THIS (for SSL cert)
 DB_NAME="powerbi_cms"
 DB_USER="strapi"
 DB_PASS=$(openssl rand -base64 32)  # Auto-generated secure password
@@ -168,7 +168,7 @@ systemctl start fail2ban
 # ── 11. Save Credentials File ────────────────────────────────────────────────
 log "Writing credentials to /root/powerbi-credentials.txt (keep safe!)..."
 cat > /root/powerbi-credentials.txt << CREDS
-PowerBI Pro Agency — VPS Credentials
+DataZeb — VPS Credentials
 Generated: $(date)
 ===========================================
 PostgreSQL:

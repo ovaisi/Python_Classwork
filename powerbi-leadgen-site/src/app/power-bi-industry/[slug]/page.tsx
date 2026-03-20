@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: data.metaTitle,
     description: data.metaDescription,
-    alternates: { canonical: `https://www.powerbipro.agency/power-bi-industry/${params.slug}` },
+    alternates: { canonical: `https://www.datazeb.com/power-bi-industry/${params.slug}` },
   };
 }
 
@@ -116,8 +116,8 @@ export default function IndustryPage({ params }: PageProps) {
     description: data.description,
     provider: {
       '@type': 'Organization',
-      name: 'PowerBI Pro Agency',
-      url: 'https://www.powerbipro.agency',
+      name: 'DataZeb',
+      url: 'https://www.datazeb.com',
     },
     areaServed: ['United States', 'European Union'],
   };

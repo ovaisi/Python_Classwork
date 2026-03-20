@@ -79,7 +79,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Get In Touch</h3>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li>📧 hello@powerbiproagency.com</li>
+              <li>📧 hello@datazeb.com</li>
               <li>📅 <a href="https://calendly.com/your-link" className="hover:text-white transition-colors">Book a Free Demo Call</a></li>
               <li>🌍 Serving USA & EU clients</li>
             </ul>
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} PowerBI Pro Agency. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} DataZeb. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-gray-300 transition-colors">Terms of Service</Link>

@@ -1,4 +1,4 @@
-# PowerBI Pro Agency — Lead Generation Website
+# DataZeb — Lead Generation Website
 
 A complete, production-ready Power BI lead generation system built with Next.js 14, Tailwind CSS, and programmatic SEO.
 
@@ -62,9 +62,9 @@ Connect your custom domain in Vercel settings.
 ### Replace Placeholders
 Before deploying, update these in your code:
 - `https://calendly.com/your-link` → Your Calendly URL
-- `hello@powerbiproagency.com` → Your email
-- `https://www.powerbipro.agency` → Your actual domain
-- Company name: `PowerBI Pro Agency` → Your agency name
+- `hello@datazeb.com` → Your email
+- `https://www.datazeb.com` → Your actual domain
+- Company name: `DataZeb` → Your agency name
 
 ### Add Google Analytics
 Add your GA4 Measurement ID to `.env.local`:

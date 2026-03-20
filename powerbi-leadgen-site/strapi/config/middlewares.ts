@@ -31,8 +31,8 @@ export default [
       // Allow Next.js frontend to call the Strapi API
       origin: [
         'http://localhost:3000',
-        'https://powerbipro.agency',
-        'https://www.powerbipro.agency',
+        'https://datazeb.com',
+        'https://www.datazeb.com',
       ],
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'],
       headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],

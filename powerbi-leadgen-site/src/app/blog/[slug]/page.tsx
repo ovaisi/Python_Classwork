@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title:       metaTitle || title,
       description: metaDescription,
       keywords:    keywords,
-      alternates:  { canonical: `https://www.powerbipro.agency/blog/${params.slug}` },
+      alternates:  { canonical: `https://www.datazeb.com/blog/${params.slug}` },
       openGraph: {
         type:          'article',
         title:         metaTitle || title,
@@ -105,9 +105,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     headline:   title,
     description: metaDescription,
     datePublished: publishedDate ? new Date(publishedDate).toISOString() : undefined,
-    author:     { '@type': 'Organization', name: 'PowerBI Pro Agency', url: 'https://www.powerbipro.agency' },
-    publisher:  { '@type': 'Organization', name: 'PowerBI Pro Agency', url: 'https://www.powerbipro.agency' },
-    mainEntityOfPage: `https://www.powerbipro.agency/blog/${params.slug}`,
+    author:     { '@type': 'Organization', name: 'DataZeb', url: 'https://www.datazeb.com' },
+    publisher:  { '@type': 'Organization', name: 'DataZeb', url: 'https://www.datazeb.com' },
+    mainEntityOfPage: `https://www.datazeb.com/blog/${params.slug}`,
     ...(imgUrl ? { image: imgUrl } : {}),
   };
 

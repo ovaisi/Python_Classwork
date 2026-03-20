@@ -4,10 +4,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.powerbipro.agency'),
+  metadataBase: new URL('https://www.datazeb.com'),
   title: {
-    default: 'PowerBI Pro Agency | Power BI Dashboard Experts for USA & EU',
-    template: '%s | PowerBI Pro Agency',
+    default: 'DataZeb | Power BI Dashboard Experts for USA & EU',
+    template: '%s | DataZeb',
   },
   description:
     'We build custom Power BI dashboards for sales, finance, and ecommerce businesses in the USA and EU. Book a free demo today.',
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'PowerBI Pro Agency',
+    siteName: 'DataZeb',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@powerbiproagency',
+    site: '@datazeb',
   },
   robots: {
     index: true,
