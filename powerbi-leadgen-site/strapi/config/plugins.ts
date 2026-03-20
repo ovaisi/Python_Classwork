@@ -1,21 +1,4 @@
 export default ({ env }) => ({
-  // Slugify plugin — auto-generates URL slugs from titles
-  slugify: {
-    enabled: true,
-    config: {
-      contentTypes: {
-        'blog-post': {
-          field: 'slug',
-          references: 'title',
-        },
-        'case-study': {
-          field: 'slug',
-          references: 'title',
-        },
-      },
-    },
-  },
-
   // Upload — local disk storage on VPS
   upload: {
     config: {
